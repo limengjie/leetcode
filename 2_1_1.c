@@ -11,8 +11,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#define LEN 10
 
-int cmp(const void *a, const void * b) {
+int cmp(const void * a, const void * b) {
 	return *(int *)a - *(int *)b;
 }
 
@@ -26,17 +27,16 @@ int rmDup(int * array, int size) {
 			n_sz++;
 		}
 	}
-	/*array[n_sz+1] = '\0';*/
 
 	return n_sz;
 }
 
 main () {
-	int i, len = 10;
-	int array[10] = {7, 1, 2, 3, 4, 5, 7, 1, 7, 8};
-	qsort(array, len, sizeof(int), cmp);
-	len = rmDup(array ,len);
-	for (i = 0; i < len; i++) 
+	int i, len;
+	int array[LEN] = {7, 1, 2, 3, 4, 5, 7, 1, 7, 8};
+	qsort(array, LEN, sizeof(int), cmp);
+	len = rmDup(array, LEN);
+	for (i = 0; i < len; ++i) 
 		printf("%d \t", array[i]);
 	printf("\n Length of array is %d\n", len);
 	
