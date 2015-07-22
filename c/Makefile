@@ -2,10 +2,10 @@ input = 211.c
 output = out
 CC = gcc
 
-all: output
+#all: out
 
-output: $(input)
+$(output): $(input)
 	$(CC) -o $@ $(input)
 
 clean: 
-	$(RM) output
+	$(RM) $(output)
