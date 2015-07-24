@@ -1,13 +1,13 @@
-input = 216.cpp
 
-output = output
+MKFILE      = Makefile
 
-CC = g++ 
+COMPILECPP  = g++ -g -O0 -Wall -Wextra -rdynamic -std=gnu++11
 
-all: $(output)
+CPPSOURCE   = 216.cpp
+#CPPHEADER   = phase10.h   command.h
+EXECBIN     = output
 
-output: $(input)
-    $(CC) -o $@ $(input)
+${EXECBIN} : ${CPPSOURCE}
+	${COMPILECPP} -o $@ ${CPPSOURCE}
 
-clean:
-    $(RM) output
+
