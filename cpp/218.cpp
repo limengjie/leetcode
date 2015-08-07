@@ -3,6 +3,8 @@
 
 using namespace std;
 
+extern void quickSort(int *, int, int);
+
 class Solution {
 	public:
 		vector<vector<int> > threeSum(vector<int> & num, int target) {
@@ -29,21 +31,25 @@ class Solution {
 				}
 			}
 
-			//vector<int> vec1(3, 1);
-			//vector<int> vec2(3, 2);
-			//res.push_back(vec1);
-			//res.push_back({1, 2, 3});
-
 			return res;
 		}
 };
 
 int main() {
 	int target = 0;
-	int num[] = {-4, -1, -1, 0, 1, 2};
+	int num[] = {-1, 0, 1, 2, -1, -4};
+
+	//sort array
+	quickSort(num, 0, 6);
+	//print sorted array
+	cout << "ordered array:\n";
+	for (size_t i = 0; i < 6; ++i)
+		cout << num[i] << " ";
+	cout << endl;
+
 	vector<int> orderedNum (num, num + 6);
 
-	//vector<int> orderedNum = sort(num_vec);
+
 
 	Solution solution;
 	vector<vector<int> > result = solution.threeSum(orderedNum, target);
