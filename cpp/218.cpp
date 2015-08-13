@@ -7,6 +7,31 @@ extern void quickSort(int *, int, int);
 
 class Solution {
 	public:
+		bool uniqueVec(vector<vector<int> >vecArry, vector<int> vec) {
+			//if there is only 1 or no element
+			if (vecArry.size() <= 1)
+				return true;
+
+			//check the new ans's size
+			if (vec.size() != 3) {
+				cout << "ans is wrong\n";
+				return false;
+			}
+
+			//only compare the last element 
+			//because the array is sorted
+			//the identical answer will only appear after the last
+			//one
+			vector<int> last = vecArry.back();
+			for (size_t i = 0; i < 3; ++i) {
+				if (last.at(i) != vec.at(i))
+					return true;
+			}
+
+			return false;
+
+		}
+
 		vector<vector<int> > threeSum(vector<int> & num, int target) {
 			vector<vector<int> > res;
 
@@ -23,8 +48,10 @@ class Solution {
 							> target)
 						--c;
 					else {// find the target
-						res.push_back({num.at(a),
+						vector <int> vec({num.at(a), 
 								num.at(b), num.at(c)});
+						if (uniqueVec(res, vec)) 
+							res.push_back(vec);
 						++b;
 						--c;
 					}
