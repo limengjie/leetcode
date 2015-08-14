@@ -30,12 +30,12 @@ void quickSort(int arr[], int left, int right) {
 }
 
 //int main() {
-	//int num[] = {-4, 1, -1, 0, 2, -1};
+	//int num[] = { -1, 2, 1, -4};
 
-	//quickSort(num, 0, 5);
+	//quickSort(num, 0, 3);
 
 	//cout << "{";
-	//for (size_t i = 0; i < 6; ++i) {
+	//for (size_t i = 0; i < 4; ++i) {
 		//if (i != 0)
 			//cout << ", ";
 		//cout << num[i];
