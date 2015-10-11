@@ -1,4 +1,4 @@
-input = 211.c
+input = 2118.c
 output = out
 CC = gcc
 
