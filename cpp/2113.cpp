@@ -90,6 +90,7 @@ class Solution {
 
 			//generate a sorted array
 			num = get_array(n);
+			
 
 			kth_permut(num, k, 0);
 
