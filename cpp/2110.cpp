@@ -51,7 +51,7 @@ class Solution {
 								> target)
 							--d;
 						else {// find the target
-							vector <int> vec({num.at(a), 
+							vector<int> vec({num.at(a), 
 									num.at(b), 
 									num.at(c),
 									num.at(d)});
