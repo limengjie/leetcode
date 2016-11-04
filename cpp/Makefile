@@ -3,7 +3,8 @@ MKFILE      = Makefile
 
 COMPILECPP  = g++ -g -O0 -Wall -Wextra -rdynamic -std=gnu++11
 
-CPPSOURCE   = 2122.cpp
+CPPSOURCE   = 414.cpp
+#CPPSOURCE   = 225.cpp linkedList.cpp
 #CPPHEADER   = phase10.h   command.h
 EXECBIN     = output
 
