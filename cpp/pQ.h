@@ -11,6 +11,7 @@ class PQ {
 		//PQ();
 		PQ(T * array, int n);
 		bool isEmpty();
+		int size();
 		void insert(T key);
 		T delMax();
 		void swim(int pos);
