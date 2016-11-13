@@ -14,8 +14,14 @@ struct TreeNode {
 
 typedef struct TreeNode TreeNode;
 
+//regular binary tree
 TreeNode * buildBinTree(int array[], int len);
 void showBinTree(TreeNode * root);
 void show2dVec(vector<vector<int> > & vec);
+
+//binary search tree
+//left child < root < right child
+TreeNode * buildBST(int array[], int len);
+void sinkBST(TreeNode * root, int num);
 
 #endif

@@ -73,27 +73,6 @@ vector<vector<int> > levelOrderTrav(TreeNode * root) {
 
 	return res;
 }
-			
-		
-	
-
-	
-	
-
-void show2dVec(vector<vector<int> > & vec) {
-	cout << "[ \n";
-	for (size_t i = 0; i < vec.size(); ++i) {
-		cout << "[";
-		for (size_t j = 0; j < vec[i].size(); ++j) {
-			cout << vec[i][j];
-			if (j != vec[i].size() - 1) {
-				cout << ", ";
-			}
-		}
-		cout << "]\n";
-	}
-	cout << "]\n";
-}
 		
 int main() {
 //	int array[] = {6, 4, 10, 2, 5, 7, 11, 1, 3, 0, 0, 9, 8};
