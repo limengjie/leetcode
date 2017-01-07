@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -55,6 +56,8 @@ void quickSort(int arr[], int lo, int hi) {
 	quickSort(arr, lo, j - 1);
 	quickSort(arr, j + 1, hi);
 }
+
+
 
 
 
