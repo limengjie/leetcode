@@ -16,8 +16,8 @@ int LRUCache::get(int k) {
 		//move the cahe entry to the first position
 		cacheList.splice(cacheList.begin(), cacheList, cacheMap[k]);
 
-		//update the map
-		cacheMap[k] = cacheList.begin();
+		////update the map
+		//cacheMap[k] = cacheList.begin();
 
 		return cacheMap[k]->_value;
 	}
@@ -37,8 +37,8 @@ void LRUCache::set(int k, int v) {
 		//change the value
 		cacheMap[k]->_value = v;
 
-		//update the map
-		cacheMap[k] = cacheList.begin();
+		////update the map
+		//cacheMap[k] = cacheList.begin();
 	}
 	else { //key doesn't exist
 		cout << "insert a new key: " << k << endl;
@@ -79,16 +79,21 @@ void LRUCache::show() const {
 	
 
 int main() {
-	LRUCache cache(4);
+	LRUCache cache(2);
 
-	cache.get(4);
-	cache.set(1, 11);
-	cache.set(2, 22);
-	cache.set(3, 33);
+	//cache.get(4);
+	cache.set(2, 1);
 	cache.set(1, 1);
+	cache.set(2, 3);
+	cache.set(4, 1);
+	cache.get(1);
 	cache.get(2);
-	cache.set(4, 44);
-	cache.set(5, 55);
+	//cache.set(3, 3);
+	//cache.get(2);
+	//cache.set(1, 1);
+	//cache.get(2);
+	//cache.set(4, 44);
+	//cache.set(5, 55);
 
 	cache.show();
 
