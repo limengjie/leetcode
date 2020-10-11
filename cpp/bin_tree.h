@@ -20,8 +20,10 @@ void showBinTree(TreeNode * root);
 void show2dVec(vector<vector<int> > & vec);
 
 //binary search tree
-//left child < root < right child
+//left subtree < root < right subtree 
 TreeNode * buildBST(int array[], int len);
 void sinkBST(TreeNode * root, int num);
+TreeNode * sortedArrayToBST(int arr, int start, int end);
+void showBST(TreeNode * root);
 
 #endif

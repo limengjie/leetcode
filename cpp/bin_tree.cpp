@@ -1,11 +1,12 @@
 #include <iostream>
-#include <queue> // showBinTree
+#include <queue>      // showBinTree
+#include <stack>      //showBST
+#include <algorithm>  //sort
 #include "bin_tree.h"
 
 using namespace std;
 
-//assume the value of node are great than 0
-
+//assume the value of node are greater than 0
 //construct a binary tree from a given array
 TreeNode * buildBinTree(int array[], int len) {
 	if (len == 0 || array == nullptr) 
@@ -138,26 +139,60 @@ void sinkBST(TreeNode * root, int n) {
 	}
 } 
 
-//construct a binary tree from a given array
-TreeNode * buildBST(int array[], int len) {
-	if (len == 0 || array == nullptr) 
-		return nullptr;
-	
-	//initialize
-	TreeNode * root = new TreeNode(array[0]);
-	for (int i = 1; i < len; ++i) {
-		sinkBST(root, array[i]);
-	}
-	
-	return root;
+TreeNode * sortedArrayToBST(int arr[], int start, int end)
+{
+        //base case
+        if (start > end) return nullptr;
+        
+        //get middle elt and make it root
+        int mid = (start + end) / 2;
+        TreeNode * root = new TreeNode(arr[mid]);
+        
+        //recursively construct left and right subtree
+        root->_left  = sortedArrayToBST(arr, start, mid - 1);
+        root->_right = sortedArrayToBST(arr, mid + 1, end);
+
+        return root;
 }
 
+//construct a binary search tree from a given array
+TreeNode * buildBST(int arr[], int len) {
+	//sort
+        sort(arr, arr + len);
+        //build
+	return sortedArrayToBST(arr, 0, len - 1);
+}
+
+//inorder traverse BST
+void showBST(TreeNode * root)
+{
+   stack<TreeNode*> stk;
+   TreeNode * p = root;
+   while (!stk.empty() || p != nullptr)
+   {
+     if (p != nullptr) 
+     {
+        stk.push(p);
+        p = p->_left;
+     }
+     else 
+     {
+        p = stk.top();
+        stk.pop();
+        cout << p->_val << endl;
+        p = p->_right;
+     }
+   }
+
+}
 
 //int main() {
-//	int A[] = {10, 5, 2, 31, 6};
+//	//int A[] = {10, 5, 2, 31, 6};
+//	int A[] = {1, 2, 3, 4, 5};
 //
 //	TreeNode * tree = buildBST(A, 5);
-//	showBinTree(tree);
+//	//showBinTree(tree);
+//        showBST(tree);
 //
 //	return 0;
 //}

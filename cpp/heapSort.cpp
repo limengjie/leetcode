@@ -18,11 +18,11 @@ void heapSort(int array[], int n) {
 	//convert array to priority queue
 	PQ<int> pq(array, n);
 	
-//	for (int i = 0; i < n; ++i) {
-//		array[i] = pq.delMax();
-//	}
+	for (int i = 0; i < n; ++i) {
+		array[i] = pq.delMax();
+	}
 	
-	reverse(array, 0, n, pq);
+//	reverse(array, 0, n, pq);
 }
 	
 	
