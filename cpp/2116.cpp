@@ -7,6 +7,8 @@ using namespace std;
 class Solution {
         public:
                 vector<vector<int> > creMatrix (int n) {
+                        //create a n*n matrix
+                        //randomly assign values to the matrix
                         vector<vector<int> > matrix;
                         for (int i = 0; i < n; ++i) {
                                 vector<int> sub_mat;
