@@ -8,59 +8,75 @@ using namespace std;
 
 //assume the value of node are greater than 0
 //construct a binary tree from a given array
-TreeNode * buildBinTree(int array[], int len) {
-	if (len == 0 || array == nullptr) 
-		return nullptr;
+//TreeNode * buildBinTree(int array[], int len) {
+//	if (len == 0 || array == nullptr) 
+//		return nullptr;
+//
+//	//create an array created[] to keep track of 
+//	//created nodes(they will become parents later), 
+//	//initialize all entries as nullptr
+//	TreeNode ** created = new TreeNode * [len];
+//	for (int i = 0; i < len; ++i) 
+//		created[i] = nullptr;
+//
+//	int twoChildren = 0; //check if a node has two children
+//	int parent = 0;// the index of parent node
+//	if (array == nullptr) return nullptr;
+//	TreeNode * root = new TreeNode(array[0]);
+//	created[0] = root;
+//	for (int i = 1; i < len; ++i) {
+//		int v = array[i];
+//		//if there is a valid node
+//		if (v > 0) {
+//			//create a new node
+//			TreeNode * pnode = new TreeNode(v);
+//			//get its parent node
+//			while (created[parent] == nullptr) {
+//				if (parent > len)
+//					return nullptr;
+//				++parent;
+//			}
+//
+//			//link child and parent
+//			if (twoChildren == 0) {
+//				created[parent]->_left = pnode;
+//				cout << "left: " << v << endl;
+//			} else {
+//				created[parent]->_right = pnode;
+//				cout << "right: " << v << endl;
+//			}
+//			//save the node for later use
+//			//it may become others parent
+//			created[i] = pnode;
+//		}
+//		//update index
+//		++twoChildren;
+//		if (twoChildren == 2) {
+//			twoChildren = 0;
+//			++parent;
+//		}
+//	}
+//	free(created);
+//
+//	return root;
+//}
 
-	//create an array created[] to keep track of 
-	//created nodes(they will become parents later), 
-	//initialize all entries as nullptr
-	TreeNode ** created = new TreeNode * [len];
-	for (int i = 0; i < len; ++i) 
-		created[i] = nullptr;
-
-	int twoChildren = 0; //check if a node has two children
-	int parent = 0;// the index of parent node
-	if (array == nullptr) return nullptr;
-	TreeNode * root = new TreeNode(array[0]);
-	created[0] = root;
-	for (int i = 1; i < len; ++i) {
-		int v = array[i];
-		//if there is a valid node
-		if (v > 0) {
-			//create a new node
-			TreeNode * pnode = new TreeNode(v);
-			//get its parent node
-			while (created[parent] == nullptr) {
-				if (parent > len)
-					return nullptr;
-				++parent;
-			}
-
-			//link child and parent
-			if (twoChildren == 0) {
-				created[parent]->_left = pnode;
-				cout << "left: " << v << endl;
-			} else {
-				created[parent]->_right = pnode;
-				cout << "right: " << v << endl;
-			}
-			//save the node for later use
-			//it may become others parent
-			created[i] = pnode;
-		}
-		//update index
-		++twoChildren;
-		if (twoChildren == 2) {
-			twoChildren = 0;
-			++parent;
-		}
-	}
-	free(created);
-
-	return root;
+//insert node in level order
+TreeNode* insertLevelOrder(int arr[], int i, int n)
+{
+   TreeNode* root = nullptr;
+   if (i < n)
+   {
+      root = new TreeNode(arr[i]);
+      root->_left  = insertLevelOrder(arr, 2*i + 1, n);
+      root->_right = insertLevelOrder(arr, 2*i + 2, n);
+   }
+   return root;
 }
 		
+TreeNode * buildBinTree(int array[], int len) {
+   return insertLevelOrder(array, 0, len);
+}
 void showBinTree(TreeNode * root) {
 	queue<TreeNode *> nodes; 
 	queue<int> level_q;
@@ -186,13 +202,14 @@ void showBST(TreeNode * root)
 
 }
 
-//int main() {
-//	//int A[] = {10, 5, 2, 31, 6};
-//	int A[] = {1, 2, 3, 4, 5};
-//
-//	TreeNode * tree = buildBST(A, 5);
-//	//showBinTree(tree);
-//        showBST(tree);
-//
-//	return 0;
-//}
+int main() {
+	int A[] = {10, 5, 2, 31, 6, -1, 8};
+	//int A[] = {1, 2, 3, 4, 5};
+        int n = sizeof(A) / sizeof(A[0]); 
+
+	TreeNode * tree = buildBinTree(A, n);
+	showBinTree(tree);
+        //showBST(tree);
+
+	return 0;
+}
