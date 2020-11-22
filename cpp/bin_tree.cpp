@@ -6,61 +6,6 @@
 
 using namespace std;
 
-//assume the value of node are greater than 0
-//construct a binary tree from a given array
-//TreeNode * buildBinTree(int array[], int len) {
-//	if (len == 0 || array == nullptr) 
-//		return nullptr;
-//
-//	//create an array created[] to keep track of 
-//	//created nodes(they will become parents later), 
-//	//initialize all entries as nullptr
-//	TreeNode ** created = new TreeNode * [len];
-//	for (int i = 0; i < len; ++i) 
-//		created[i] = nullptr;
-//
-//	int twoChildren = 0; //check if a node has two children
-//	int parent = 0;// the index of parent node
-//	if (array == nullptr) return nullptr;
-//	TreeNode * root = new TreeNode(array[0]);
-//	created[0] = root;
-//	for (int i = 1; i < len; ++i) {
-//		int v = array[i];
-//		//if there is a valid node
-//		if (v > 0) {
-//			//create a new node
-//			TreeNode * pnode = new TreeNode(v);
-//			//get its parent node
-//			while (created[parent] == nullptr) {
-//				if (parent > len)
-//					return nullptr;
-//				++parent;
-//			}
-//
-//			//link child and parent
-//			if (twoChildren == 0) {
-//				created[parent]->_left = pnode;
-//				cout << "left: " << v << endl;
-//			} else {
-//				created[parent]->_right = pnode;
-//				cout << "right: " << v << endl;
-//			}
-//			//save the node for later use
-//			//it may become others parent
-//			created[i] = pnode;
-//		}
-//		//update index
-//		++twoChildren;
-//		if (twoChildren == 2) {
-//			twoChildren = 0;
-//			++parent;
-//		}
-//	}
-//	free(created);
-//
-//	return root;
-//}
-
 //insert node in level order
 TreeNode* insertLevelOrder(int arr[], int i, int n)
 {
@@ -74,10 +19,10 @@ TreeNode* insertLevelOrder(int arr[], int i, int n)
    return root;
 }
 		
-TreeNode * buildBinTree(int array[], int len) {
+TreeNode* buildBinTree(int array[], int len) {
    return insertLevelOrder(array, 0, len);
 }
-void showBinTree(TreeNode * root) {
+void showBinTree(TreeNode* root) {
 	queue<TreeNode *> nodes; 
 	queue<int> level_q;
 	int cur_lvl = 0;
@@ -123,14 +68,14 @@ void show2dVec(vector<vector<int> > & vec) {
 	cout << "]\n";
 }
 
-void sinkBST(TreeNode * root, int n) {
+void sinkBST(TreeNode* root, int n) {
 	if (root == nullptr) {
 		cout << "invalid tree\n";
 		return ;
 	}
 	
-	TreeNode * newNode = new TreeNode(n);
-	TreeNode * pnode = root;
+	TreeNode* newNode = new TreeNode(n);
+	TreeNode* pnode = root;
 	while (pnode != nullptr) {
 		if (pnode->_val == n)
 			return;
@@ -155,14 +100,14 @@ void sinkBST(TreeNode * root, int n) {
 	}
 } 
 
-TreeNode * sortedArrayToBST(int arr[], int start, int end)
+TreeNode* sortedArrayToBST(int arr[], int start, int end)
 {
         //base case
         if (start > end) return nullptr;
         
         //get middle elt and make it root
         int mid = (start + end) / 2;
-        TreeNode * root = new TreeNode(arr[mid]);
+        TreeNode* root = new TreeNode(arr[mid]);
         
         //recursively construct left and right subtree
         root->_left  = sortedArrayToBST(arr, start, mid - 1);
@@ -172,7 +117,7 @@ TreeNode * sortedArrayToBST(int arr[], int start, int end)
 }
 
 //construct a binary search tree from a given array
-TreeNode * buildBST(int arr[], int len) {
+TreeNode* buildBST(int arr[], int len) {
 	//sort
         sort(arr, arr + len);
         //build
@@ -180,10 +125,10 @@ TreeNode * buildBST(int arr[], int len) {
 }
 
 //inorder traverse BST
-void showBST(TreeNode * root)
+void showBST(TreeNode* root)
 {
    stack<TreeNode*> stk;
-   TreeNode * p = root;
+   TreeNode* p = root;
    while (!stk.empty() || p != nullptr)
    {
      if (p != nullptr) 
@@ -195,11 +140,24 @@ void showBST(TreeNode * root)
      {
         p = stk.top();
         stk.pop();
-        cout << p->_val << endl;
+        cout << p->_val << " ";
         p = p->_right;
      }
    }
+   cout << endl;
+}
 
+TreeNode* insertBST(TreeNode* root, int value) 
+{
+   if (!root)
+      return new TreeNode(value);
+
+   if (value < root->_val)
+      root->_left  = insertBST(root->_left, value);
+   else if (value > root->_val)
+      root->_right = insertBST(root->_right, value);
+
+   return root;
 }
 
 int main() {
@@ -207,9 +165,10 @@ int main() {
 	//int A[] = {1, 2, 3, 4, 5};
         int n = sizeof(A) / sizeof(A[0]); 
 
-	TreeNode * tree = buildBinTree(A, n);
-	showBinTree(tree);
-        //showBST(tree);
+	TreeNode* tree = buildBST(A, n);
+        tree = insertBST(tree, 7);
+	//showBinTree(tree);
+        showBST(tree);
 
 	return 0;
 }

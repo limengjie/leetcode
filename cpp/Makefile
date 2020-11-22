@@ -3,7 +3,7 @@ MKFILE      = Makefile
 
 COMPILECPP  = g++ -g -O0 -Wall -Wextra -rdynamic -std=gnu++17
 
-CPPSOURCE   = Stack.cpp
+CPPSOURCE   = bin_tree.cpp
 #CPPSOURCE   = bin_tree.cpp BSTtwoSum.cpp
 #CPPSOURCE   = bin_tree.cpp 517.cpp
 #CPPSOURCE   = 225.cpp linkedList.cpp
